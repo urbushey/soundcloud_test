@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Connect with SoundCloud</title>
+
+
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+    <script>
+    SC.initialize({
+      client_id: '87a47dc5f42a44b2ec27e7628ddad20b',
+      redirect_uri: 'http://example.com/callback'
+    });
+
+    // initiate auth popup
+    SC.connect().then(function() {
+      return SC.get('/me');
+    }).then(function(me) {
+      alert('Hello, ' + me.username);
+    });
+    </script>
+  </head>
+  <body onload="window.setTimeout(window.opener.SC.connectCallback, 1);">
+    <p>
+      This popup should automatically close in a few seconds
+    </p>
+  </body>
+</html>
